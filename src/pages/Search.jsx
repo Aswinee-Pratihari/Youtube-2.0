@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import useSearchVideo from "../utils/useSearchVideo";
 import SuggestedVideoCards from "../components/SuggestedVideoCards";
+import TabName from "../components/TabName";
 
 const Search = () => {
   const { query } = useParams();
@@ -10,11 +11,15 @@ const Search = () => {
   const { data } = useSearchVideo(query);
 
   return (
-    <div className="container mx-auto">
-      {data?.map((video) => {
-        return <SuggestedVideoCards mode="search" video={video} />;
-      })}
-    </div>
+    <TabName title={query}>
+      <div className="container mx-auto">
+        {data?.map((video) => {
+          return (
+            <SuggestedVideoCards mode="search" video={video} key={video?.id} />
+          );
+        })}
+      </div>
+    </TabName>
   );
 };
 

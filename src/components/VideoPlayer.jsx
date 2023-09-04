@@ -6,6 +6,7 @@ import CommentCard from "./CommentCard";
 import useComment from "../utils/useComment";
 import useVideoDetails from "../utils/useVideoDetails";
 import { Link } from "react-router-dom";
+import TabName from "./TabName.jsx";
 const VideoPlayer = ({ vidId }) => {
   // console.log(vidId);
   const [showMore, setShowMore] = useState(false);
@@ -100,10 +101,8 @@ const VideoPlayer = ({ vidId }) => {
   const { details } = useVideoDetails(vidId);
   const { data } = useComment(vidId);
 
-  console.log(details);
-  // const { data } = useComment("COv52Qyctws");
   return (
-    <>
+    <TabName title={details?.items[0]?.snippet?.title}>
       <div className="w-full">
         <ReactPlayer
           // url={`https://www.youtube.com/watch?v=${vidId}`}
@@ -115,15 +114,6 @@ const VideoPlayer = ({ vidId }) => {
           controls={true}
           playsinline={true}
         />
-        {/* <iframe
-          width="560"
-          height="315"
-          src={`https://www.youtube.com/embed/${vidId}?si=qiCaXvDrrbPVeMVT`}
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe> */}
       </div>
       <div className="my-5">
         <div className="top">
@@ -189,7 +179,7 @@ const VideoPlayer = ({ vidId }) => {
           })}
         </div>
       </div>
-    </>
+    </TabName>
     // </div>
     // </div>
   );

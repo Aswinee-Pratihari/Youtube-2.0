@@ -9,10 +9,10 @@ const Feed = () => {
     const getVideos = async () => {
       const data = await fetch(YOUTUBE_API);
       const json = await data.json();
-      console.log(json);
+      // console.log(json);
       setVideo(json?.items);
     };
-    // getVideos();
+    getVideos();
   }, []);
   return (
     <div className="px-5">
